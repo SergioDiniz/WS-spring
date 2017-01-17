@@ -1,5 +1,7 @@
 package br.com.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,11 @@ public class UserService {
 	
 	public void create(Usuario usuario){
 		repository.save(usuario);
+	}
+	
+	
+	public Collection<Usuario> listAll(){
+		return repository.findAll();
 	}
 	
 }
