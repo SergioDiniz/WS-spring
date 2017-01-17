@@ -45,5 +45,10 @@ public class UserController {
 	}
 	
 	
+	@PutMapping(value="/", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public Usuario update(@RequestBody Usuario usuario){
+		return userService.update(usuario);
+	}
+	
 	
 }
