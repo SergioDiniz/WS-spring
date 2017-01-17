@@ -1,4 +1,4 @@
-package br.com.hello;
+package br.com.ws.hello;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

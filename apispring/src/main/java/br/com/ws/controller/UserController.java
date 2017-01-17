@@ -1,9 +1,11 @@
-package br.com.controller;
+package br.com.ws.controller;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.model.Usuario;
-import br.com.service.UserService;
+import br.com.ws.model.Usuario;
+import br.com.ws.service.UserService;
 
 @RestController
 @RequestMapping("/user")
@@ -40,14 +42,20 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Integer id){
-		userService.delete(id);
+	public ResponseEntity<HttpStatus> delete(@PathVariable Integer id){
+		try {
+			userService.delete(id);
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 	}
 	
 	
 	@PutMapping(value="/", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Usuario update(@RequestBody Usuario usuario){
-		return userService.update(usuario);
+	public ResponseEntity<Usuario> update(@RequestBody Usuario usuario){
+		Usuario ux = userService.update(usuario);
+		return new ResponseEntity<>(ux, HttpStatus.OK);
 	}
 	
 	
