@@ -22,8 +22,15 @@ public class UserService {
 		return repository.findAll();
 	}
 	
+	public Usuario findOne(Integer id){
+		return repository.findOne(id);
+	}
+	
 	public void delete(Integer id){
 		repository.delete(id);
 	}
 	
+	public Usuario update(Usuario usuario){
+		return repository.save(usuario);
+	}
 }
