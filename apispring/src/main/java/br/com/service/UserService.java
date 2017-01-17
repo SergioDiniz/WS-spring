@@ -18,9 +18,12 @@ public class UserService {
 		repository.save(usuario);
 	}
 	
-	
 	public Collection<Usuario> listAll(){
 		return repository.findAll();
+	}
+	
+	public void delete(Integer id){
+		repository.delete(id);
 	}
 	
 }
